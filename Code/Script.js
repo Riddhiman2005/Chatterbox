@@ -1,9 +1,7 @@
 // Store the messages between users
-
 const messages = [];
 
 // Function to send a message
-
 function sendMessage() {
   const input = document.getElementById('messageInput');
   const message = input.value.trim();
@@ -13,7 +11,8 @@ function sendMessage() {
     const newMessage = {
       sender: 'User 1',
       content: message,
-      type: 'text'
+      type: 'text',
+      reactions: []
     };
     
     // Add the new message to the messages array
@@ -44,7 +43,8 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
       const newMessage = {
         sender: 'User 1',
         content: event.target.result,
-        type: getFileType(file)
+        type: getFileType(file),
+        reactions: []
       };
       
       messages.push(newMessage);
@@ -81,7 +81,7 @@ function updateChatWindow() {
   chatWindow.innerHTML = '';
   
   // Iterate over the messages and create message elements
-  messages.forEach((message) => {
+  messages.forEach((message, index) => {
     const messageElement = document.createElement('div');
     messageElement.classList.add('message');
     
@@ -111,6 +111,19 @@ function updateChatWindow() {
       contentElement.appendChild(pdfLinkElement);
     }
     
+    // Add click event listener to the message element
+    messageElement.addEventListener('click', function () {
+      displayEmojiList(messageElement, index);
+    });
+    
+    // Add reactions to the message element
+    message.reactions.forEach((emoji) => {
+      const reactionElement = document.createElement('span');
+      reactionElement.classList.add('emoji');
+      reactionElement.textContent = emoji;
+      messageElement.appendChild(reactionElement);
+    });
+    
     messageElement.appendChild(senderElement);
     messageElement.appendChild(contentElement);
     
@@ -120,3 +133,44 @@ function updateChatWindow() {
   // Scroll to the bottom of the chat window
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
+
+// Function to display the emoji list for reactions
+function displayEmojiList(messageElement, messageIndex) {
+  // Check if emoji list is already displayed for the message
+  const emojiList = messageElement.querySelector('.emoji-list');
+  if (emojiList) {
+    // Hide the emoji list
+    emojiList.remove();
+    return;
+  }
+  
+  // Create the emoji list element
+  const emojiListElement = document.createElement('div');
+  emojiListElement.classList.add('emoji-list');
+  
+  // Add emojis to the list
+  emojis.forEach((emoji) => {
+    const emojiElement = document.createElement('span');
+    emojiElement.classList.add('emoji');
+    emojiElement.textContent = emoji;
+    
+    // Add click event listener to the emoji element
+    emojiElement.addEventListener('click', function () {
+      reactToMessage(messageIndex, emoji);
+    });
+    
+    emojiListElement.appendChild(emojiElement);
+  });
+  
+  // Append the emoji list to the message element
+  messageElement.appendChild(emojiListElement);
+}
+
+// Function to react to a message with an emoji
+function reactToMessage(messageIndex, emoji) {
+  messages[messageIndex].reactions.push(emoji);
+  updateChatWindow();
+}
+
+// Emoji list
+const emojis = ['😄', '😍', '👍', '👎', '😊', '😂', '😎', '😜','🤣','😥','😭','😰'];
