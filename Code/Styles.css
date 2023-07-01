@@ -1,0 +1,89 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+.container {
+  width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #2196f3;
+}
+
+.chat-window {
+  height: 300px;
+  border: 1px solid #ccc;
+  overflow-y: scroll;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.message .sender {
+  font-weight: bold;
+  color: #2196f3;
+}
+
+.message .content {
+  margin-left: 10px;
+}
+
+.message img {
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.input-group {
+  display: flex;
+  margin-top: 10px;
+}
+
+.input-group input[type="text"] {
+  flex: 1;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.input-group button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.input-group button:hover {
+  background-color: #0c7ac3;
+}
+
+.input-group input[type="file"] {
+  display: none;
+}
+
+.input-group label {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.input-group label:hover {
+  background-color: #d32f2f;
+}
