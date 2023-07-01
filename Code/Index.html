@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Non-Stop Chatterbox</title>
+  <style>
+    /* CSS styles are the same as before */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Non-Stop Chatterbox</h1>
+    <div class="chat-window" id="chatWindow"></div>
+    <div class="input-group">
+      <label for="fileInput" class="file-label">Attach</label>
+      <input type="file" id="fileInput" style="display: none">
+      <input type="text" id="messageInput" placeholder="Type a message..." autocomplete="off">
+      
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
