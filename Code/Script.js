@@ -1,4 +1,5 @@
 // Store the messages between users
+
 const messages = [];
 
 // Function to send a message
